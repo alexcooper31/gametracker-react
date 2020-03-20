@@ -64,8 +64,12 @@ const GamePage = ({ history }) => {
       </Cover>
       <Info>
         <Platforms platforms={game.currentGame && game.currentGame.platforms} />
-        <h2>{format(game.currentGame && game.currentGame.first_release_date)}</h2>
-        
+          {
+            game.currentGame && game.currentGame.first_release_date
+            ? <h2>{format(game.currentGame && game.currentGame.first_release_date)}</h2>
+            : <h2>TBA</h2>
+          }
+      
         <Buttons>
           <ListButton
             onClick={listHandler}
