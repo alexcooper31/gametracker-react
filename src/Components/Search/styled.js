@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { blue, green, red } from '../../Helpers/colors';
 
 const SearchWrapper = styled.div`
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -15,7 +15,6 @@ const SearchWrapper = styled.div`
 
 const SearchBar = styled.input`
   width: 100%;
-  max-width: 500px;
   height: 50px;
   border: 1px solid lightgray;
   border-right: none;
@@ -78,8 +77,8 @@ const SearchItem = styled.div`
   width: 100%;
   max-width: 500px;
   margin-bottom: 5px;
-  border-radius: 5px;
   padding: 10px;
+  border-radius: 2px;
   background-color: white;
   user-select: none;
   cursor: pointer;
@@ -117,6 +116,11 @@ const SearchItem = styled.div`
     border-radius: 3px;
     object-fit: cover;
     object-position: 100% 0;
+
+    @media screen and (max-width: 770px) {
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
 
@@ -153,6 +157,7 @@ const Overlay = styled.div`
   z-index: -1;
   background-color: black;
   opacity: 0.6;
+  cursor: pointer;
   animation: ${overlayOpen} 0.5s;
   animation-fill-mode: forwards;
 

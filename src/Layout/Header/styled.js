@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   box-shadow: 0 0 5px 5px lightgray;
+  z-index: 10;
 
   @media screen and (max-width: 770px) {
     height: 60px;

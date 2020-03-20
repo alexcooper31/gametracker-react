@@ -49,10 +49,13 @@ const signIn = (params) => {
 
 const deleteToken = () => token(undefined);
 
-const search = (term, callback) => {
+const search = (term) => {
   return async (dispatch) => {
     try {
-      if(term === '') return;
+      if (term === '') {
+        dispatch(searchResults([]));
+        return;
+      }
       const result = await axios.get(`${url}/games/search`, {
         headers: {
           authorization: `Bearer ${getUserToken()}`
@@ -62,13 +65,10 @@ const search = (term, callback) => {
         }
       });
       dispatch(searchResults(result.data));
-      callback();
     } catch (e) {
     }
   }
 }
-
-const clearSearch = () => searchResults([]);
 
 const currentGame = (game) => setCurrentGame(game);
 
@@ -151,7 +151,6 @@ export {
   signIn,
   deleteToken,
   search,
-  clearSearch,
   currentGame,
   latestGames,
   upcomingGames,

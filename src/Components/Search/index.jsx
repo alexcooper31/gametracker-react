@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Icon from '../Icon';
 import Platforms from './platforms';
-import { search, currentGame, clearSearch } from '../../Redux/actions';
+import { search, currentGame } from '../../Redux/actions';
 import format from '../../Helpers/dateFormat';
 import {
   SearchWrapper,
@@ -29,20 +29,25 @@ const Search = ({ history }) => {
     }, 1000)
     
     return () => {
-      dispatch(clearSearch());
+      dispatch(search(''));
       clearTimeout(timer);
     }
   }, [dispatch, term])
 
-
   const handleSearch = useCallback((e) => {
     setTerm(e.target.value);
-  }, []);
+    if (term.length <= 1) dispatch(search(''));
+  }, [dispatch, term.length]);
+
+  const cleanSearch = useCallback(() => {
+    setTerm('');
+    dispatch(search(''));
+  }, [dispatch])
 
   const setGame = useCallback((item) => {
     setTerm('');
     dispatch(currentGame(item));
-    dispatch(clearSearch());
+    dispatch(search(''));
     history.push(`/game/${item.id}`);
   }, [dispatch, history]);
 
@@ -67,7 +72,7 @@ const Search = ({ history }) => {
         <Icon>search</Icon>
       </SearchIcon>
       <SearchResults>
-        { term !== '' ? <Overlay /> : null }
+        { term !== '' ? <Overlay onClick={cleanSearch} /> : null }
         {
           results.searchResults && results.searchResults.map((item, index) => 
             <SearchItem key={index} onClick={() => setGame(item)}>

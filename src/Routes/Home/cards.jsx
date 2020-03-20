@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { CardWrapper, GameCard } from './styled';
 import format from '../../Helpers/dateFormat';
-import { clearSearch, currentGame } from '../../Redux/actions';
+import { currentGame, search } from '../../Redux/actions';
 import { withRouter } from 'react-router-dom';
 
 const Card = (props) => {
@@ -11,7 +11,7 @@ const Card = (props) => {
 
   const setGame = useCallback((item) => {
     dispatch(currentGame(item));
-    dispatch(clearSearch());
+    dispatch(search([]));
     props.history.push(`/game/${item.id}`);
   }, [dispatch, props.history]);
 

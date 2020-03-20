@@ -1,71 +1,28 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { gray1 } from '../Helpers/colors';
-
 const Main = styled.div`
-  font-size: 10px;
-  margin: 100px auto 50px;
-  text-indent: -9999em;
-  width: 11em;
-  height: 11em;
-  border-radius: 50%;
-  background: dodgerblue;
-  background: -moz-linear-gradient(left, dodgerblue 10%, rgba(255, 255, 255, 0) 42%);
-  background: -webkit-linear-gradient(left, dodgerblue 10%, rgba(255, 255, 255, 0) 42%);
-  background: -o-linear-gradient(left, dodgerblue 10%, rgba(255, 255, 255, 0) 42%);
-  background: -ms-linear-gradient(left, dodgerblue 10%, rgba(255, 255, 255, 0) 42%);
-  background: linear-gradient(to right, dodgerblue 10%, rgba(255, 255, 255, 0) 42%);
-  position: relative;
-  -webkit-animation: load3 1.4s infinite linear;
-  animation: load3 1.4s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-
-  &:before {
-    width: 50%;
-    height: 50%;
-    background: dodgerblue;
-    border-radius: 100% 0 0 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-  }
+  display: inline-block;
+  width: 80px;
+  height: 80px;
 
   &:after {
-    background: ${gray1};
-    width: 75%;
-    height: 75%;
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin-top: 100px;
     border-radius: 50%;
-    content: '';
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    border: 6px solid dodgerblue;
+    border-color: dodgerblue transparent dodgerblue transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
   }
 
-  @-webkit-keyframes load3 {
+  @keyframes lds-dual-ring {
     0% {
-      -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
     }
     100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes load3 {
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
   }
